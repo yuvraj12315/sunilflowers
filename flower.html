@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Kids Fashion World and Flowers Decoration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Kids Fashion World and Flowers Decoration — curated fashion & fresh flowers." />
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --bg-1:#fcefee; --bg-2:#f9f9f9; --accent:#a5427e; --accent-2:#f962a6;
+  --muted:#5a3f6e; --card-bg:#ffffff; --dark:#3f2e56; --radius-lg:18px; --radius-xl:25px;
+  --max-width:1200px; --transition:280ms cubic-bezier(.2,.9,.2,1); --elev-1:0 8px 30px rgba(165,66,126,0.12);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,Helvetica,Arial;
+background:linear-gradient(90deg,var(--bg-1),var(--bg-2)); color:var(--dark); line-height:1.45;}
+
+/* Navbar */
+nav {
+  position: sticky; top:0; z-index:1000; background:#fff;
+  box-shadow:0 4px 25px rgba(0,0,0,0.12);
+  transition: background var(--transition); padding:0.5rem 0;
+}
+.nav-inner { margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center; gap:1rem; max-width:var(--max-width);}
+.logo-img { height:80px; width:auto; object-fit:contain;}
+.logo { font-weight:800; color:#111; font-size:1.5rem; letter-spacing:1px;}
+.nav-links { display:flex; gap:1rem;}
+.nav-links a { display:inline-block; padding:0.55rem 1.2rem; border-radius:8px; font-weight:600; color:rgb(26, 24, 24); background:#d8d7d7; box-shadow:#fff; transition:all 0.3s ease; position:relative; text-decoration:none;}
+.nav-links a:hover, .nav-links a[aria-current="page"] { color:#fff; background: #f0f1f0; transform:translateY(-2px);}
+.nav-links a::after { content:""; position:absolute; bottom:-3px; left:10%; width:0%; height:2px; background:var(--accent-2); transition:width 0.3s ease;}
+.nav-links a:hover::after, .nav-links a[aria-current="page"]::after { width:80%;}
+
+.hamburger{display:none;border:0;background:none;padding:.25rem;cursor:pointer;}
+.hamburger .bar{width:22px;height:2px;background:var(--accent);display:block;margin:4px 0;border-radius:2px;}
+.mobile-panel{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:flex-start;justify-content:flex-end;padding-top:64px;z-index:900;}
+.mobile-panel .panel-inner{width:280px;background:white;height:100%;padding:2.25rem 1.25rem;box-shadow:-8px 0 36px rgba(0,0,0,.15);display:flex;flex-direction:column;gap:1.25rem;}
+
+.section{max-width:var(--max-width);margin:2.5rem auto;padding:0 1.25rem;}
+.center{text-align:center;}
+.muted{color:#7a5f86;}
+
+ /* Cards + Rows */
+    .rows{display:flex;flex-direction:column;gap:2rem;}
+     .row {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0;
+  }
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;}
+   .card {
+  flex: 0 0 300px; /* ✅ Card ka width aur bada */
+  max-width: 300px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--elev-1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+    .card img {
+   max-width: 300px; /* ✅ Width consistent */
+  height: 400px; /* ✅ Height aur bada */
+  object-fit: cover; /* ✅ Crop but poora fill kare */
+  display: block;
+  aspect-ratio: 3/4; /* ✅ Consistent height maintain karega */
+  background: #000; /* Optional: black background add */
+}
+
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(46,44,22,.2);}
+
+
+    .card-body{padding:1rem;display:flex;flex-direction:column;gap:.6rem;}
+    .card h3{margin:0;font-size:1.1rem;color:rgb(11,135,252);font-weight:700;}
+
+footer{padding:1.25rem;text-align:center;color:#7a5f86;}
+.footer-icons{display:flex;gap:14px;justify-content:center;align-items:center;margin-top:.4rem;}
+.footer-icons a{display:inline-flex;width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;background:radial-gradient(120% 120% at 30% 20%,#fff 0%,#f6e9f1 60%,#f2d8ea 100%); box-shadow:0 6px 18px rgba(165,66,126,.18); transition:.25s transform;}
+.footer-icons a:hover{transform:translateY(-3px) scale(1.05); background:#d9d4e0;}
+    .back-btn {
+  position: fixed;
+  top: 1rem;       /* ✅ Navbar ke upar properly fix */
+  left: 1rem;
+  z-index: 1100;   /* ✅ Always visible */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  font-size: 1.4rem;
+  background: #fff;
+  color: #111;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.back-btn:hover {
+  background: #f0f0f0;
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 720px) {
+  .card { flex: 0 0 200px; }
+  .card img { height: 200px; }
+}
+
+@media (max-width: 420px) {
+  .card { flex: 0 0 150px; }
+  .card img { height: 200px; }
+}
+.loader-orbit {
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.loader-orbit span {
+  width: 12px;
+  height: 12px;
+  background: #ff3f3f;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: -20px;
+  animation: orbit 1.2s linear infinite;
+}
+
+.loader-orbit span:nth-child(2) { animation-delay: 0.2s; }
+.loader-orbit span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
+}
+</style>
+</head>
+
+<body>
+  <div id="loader" class="loader-orbit">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<!-- Main Content -->
+<div id="mainContent" style="display:none;">
+  <!-- Tumhara poora website content yaha -->
+</div>
+<header>
+<!-- Navbar ke andar daalo -->
+<nav aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a class="back-btn" href="index.html" title="Go Back">
+      <i class="fas fa-arrow-left"></i>
+    </a>
+    <a href="#" class="logo">
+      <img src="file_00000000450c61fd9a58c523d63160b3.png" alt="Logo" class="logo-img">
+    </a>
+    <div class="logo" tabindex="0">Flowers & Decoration World</div>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false" id="hamburgerBtn">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+  </div>
+</nav>
+</header>
+
+<main>
+<section class="section" aria-label="Categories">
+  <div class="center" style="margin-bottom:1rem">
+<h1 style="margin:0; font-size:1.5rem; color: rgb(255, 230, 0); font-weight: 600;">
+  Brighten Your Day with Flowers
+</h1>
+<h2><p class="muted" style="font-size:1rem; color:hsl(0, 3%, 13%); margin-top:0.3rem;">
+  Scroll through our flower collection and pick your favorite arrangement
+</p></h2>
+  </div>
+  <!-- Container for multiple scrollable rows -->
+  <div class="rows" id="flowers-rows"></div>
+</section>
+</main>
+
+<footer>
+<div style="max-width:var(--max-width);margin:0 auto;padding:0 1.25rem">
+  <div class="footer-icons">
+    <a href="https://wa.me/919621395118" target="_blank" aria-label="WhatsApp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" width="26" height="26">
+    </a>
+    <a href="https://instagram.com/sunil.p541" target="_blank" aria-label="Instagram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="" width="26" height="26">
+    </a>
+    <a href="https://facebook.com/sunil.p541" target="_blank" aria-label="Facebook">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Facebook_Logo.png" alt="" width="26" height="26">
+    </a>
+  </div>
+  <small>MY SHOP — curated fashion & flowers</small>
+</div>
+</footer>
+  <footer>
+    &copy; 2025 Sunil Flower Decoration. All rights reserved.
+  </footer>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDhKNcBlMkxNzMADhStvBOD-Xv6uA12B5E",
+  authDomain: "sunil-flowers.firebaseapp.com",
+  projectId: "sunil-flowers",
+  storageBucket: "sunil-flowers.appspot.com",
+  messagingSenderId: "54138697186",
+  appId: "1:54138697186:web:e3d450f51875cf6c89b5bb",
+  measurementId: "G-3Q5485MJL4"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Load multiple scrollable rows
+ async function loadFlowersRows() {
+    const container = document.getElementById("flowers-rows");
+    container.innerHTML = "";
+
+    const querySnapshot = await getDocs(collection(db, "flowers"));
+    const docs = [];
+    querySnapshot.forEach(doc => docs.push(doc.data()));
+
+    const perRow = 10; // ✅ ab ek row me 10 cards
+    for (let i = 0; i < docs.length; i += perRow) {
+      const rowDiv = document.createElement("div");
+      rowDiv.className = "row";
+
+      docs.slice(i, i + perRow).forEach(data => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${data.banner || data.image}" alt="${data.title}">
+          <div class="card-body">
+            <h3>${data.title}</h3>
+            <p>${data.description || ""}</p>
+          </div>
+        `;
+        rowDiv.appendChild(card);
+      });
+
+      container.appendChild(rowDiv);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    await loadFlowersRows();
+    loader.style.display = "none";
+    mainContent.style.display = "block";
+  });
+// Example: Wait until your main content or Firebase data loads
+async function loadWebsite() {
+  try {
+    // ✅ Yaha tumhara data fetch karo, e.g., fetchBlogs()
+    await fetchBlogs(); // Agar tum Firebase use kar rahe ho
+
+    // After data is ready, hide loader and show main content
+    loader.style.display = "none";
+    mainContent.style.display = "block";
+  } catch (e) {
+    console.error("Error loading website:", e);
+    loader.style.display = "none";
+    mainContent.style.display = "block";
+  }
+}
+
+// Call loadWebsite on page load
+document.addEventListener("DOMContentLoaded", loadWebsite);
+</script>
+</body>
+</html>
